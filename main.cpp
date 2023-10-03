@@ -6,15 +6,9 @@
 using namespace std;
 
 int main() {
-    cout << "Hello, World!" << endl;
 
-    EcpriPacket packet;
-    packet.setPacketData("Some data");
-    cout << packet.getPacketData() << endl;
-
-    PacketAnalyzer packetAnalyzer;
-    packetAnalyzer.ReadInputFile();
-
+    PacketAnalyzer packetAnalyzer("input_packets.txt", "outPutFile.txt");
+    packetAnalyzer.readFromInputFile();
 
     return 0;
 }

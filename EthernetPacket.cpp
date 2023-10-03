@@ -34,3 +34,11 @@ const string &EthernetPacket::getPacketType() const {
 void EthernetPacket::setPacketType(const string &packetType) {
     EthernetPacket::packetType = packetType;
 }
+
+const string &EthernetPacket::getSourceAddress() const {
+    return sourceAddress;
+}
+
+void EthernetPacket::setSourceAddress(const string &sourceAddress) {
+    EthernetPacket::sourceAddress = sourceAddress;
+}

@@ -9,6 +9,7 @@ class EthernetPacket {
 protected:
     string packetData;
     string destinationAddress;
+    string sourceAddress;
     string crc;
     string packetType;
 
@@ -24,6 +25,11 @@ public:
 
     const string &getPacketType() const;
     void setPacketType(const string &packetType);
+
+    const string &getSourceAddress() const;
+    void setSourceAddress(const string &sourceAddress);
 };
+
+
 
 #endif

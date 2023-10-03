@@ -18,42 +18,28 @@ protected:
 
 public:
 
-    PacketAnalyzer(string, string, string);
+    PacketAnalyzer(string, string);
 
-    const string &getInputFileName() const {
-        return inputFileName;
-    }
+    const string &getInputFileName() const;
 
-    void setInputFileName(const string &inputFileName) {
-        PacketAnalyzer::inputFileName = inputFileName;
-    }
+    void setInputFileName(const string &inputFileName);
 
-    const string &getOutputFileName() const {
-        return outputFileName;
-    }
+    const string &getOutputFileName() const;
 
-    void setOutputFileName(const string &outputFileName) {
-        PacketAnalyzer::outputFileName = outputFileName;
-    }
+    void setOutputFileName(const string &outputFileName);
 
-    const vector<EthernetPacket *> &getPackets() const {
-        return packets;
-    }
+    const vector<EthernetPacket *> &getPackets() const;
 
-    void setPackets(const vector<EthernetPacket *> &packets) {
-        PacketAnalyzer::packets = packets;
-    }
+    void setPackets(const vector<EthernetPacket *> &packets);
 
     void parseEthernetPacket(const EthernetPacket& packet);
 
     void parseECPRIPacket(const EcpriPacket& packet);
 
-    void ReadInputFile();
+    void readFromInputFile();
 
-
+    void writeToOutputFile();
 
 };
-
-
 
 #endif
