@@ -2,30 +2,35 @@
 #define PACKET_ANALYZER_ETHERNET_PACKET_H
 
 #include <string>
-
-using namespace std;
+#include <sstream>  
 
 class EthernetPacket {
-protected:
-    string packetData;
-    string destinationAddress;
-    string crc;
-    string packetType;
+private:
+    std::string packetData;
+    std::string destinationAddress;
+    std::string sourceAddress;
+    std::string crc;
+    std::string packetType;
 
 public:
-    const string &getPacketData() const;
-    void setPacketData(const string &packetData);
+    EthernetPacket(const std::string& packetData);
 
-    const string &getDestinationAddress() const;
-    void setDestinationAddress(const string &destinationAddress);
+    const std::string& getPacketData() const;
+    void setPacketData(const std::string& packetData);
 
-    const string &getCrc() const;
-    void setCrc(const string &crc);
+    const std::string& getDestinationAddress() const;
+    void setDestinationAddress(const std::string& destinationAddress);
 
-    const string &getPacketType() const;
-    void setPacketType(const string &packetType);
+    const std::string& getSourceAddress() const;
+    void setSourceAddress(const std::string& sourceAddress);
 
-    void processPacketData();
+    const std::string& getCrc() const;
+    void setCrc(const std::string& crc);
+
+    const std::string& getPacketType() const;
+    void setPacketType(const std::string& packetType);
+
+    std::string getPacketInfo() const;
 };
 
 #endif

@@ -1,40 +1,62 @@
 #include "EthernetPacket.h"
-#include "EcpriPacket.h"
+#include <stdexcept>  
 
-using namespace std;
+EthernetPacket::EthernetPacket(const std::string& packetData) {
+    if (packetData.length() < 52) {
+        throw std::runtime_error("Invalid packetData: Insufficient length");
+    }
+    this->packetData = packetData;
+    this->crc = packetData.substr(packetData.length() - 8);
+    this->destinationAddress = packetData.substr(16, 12);
+    this->sourceAddress = packetData.substr(28, 12);
+    this->packetType = packetData.substr(40, 4);
+}
 
-const string &EthernetPacket::getPacketData() const {
+const std::string& EthernetPacket::getPacketData() const {
     return packetData;
 }
 
-void EthernetPacket::setPacketData(const string &packetData) {
-    EthernetPacket::packetData = packetData;
+void EthernetPacket::setPacketData(const std::string& packetData) {
+    this->packetData = packetData;
 }
 
-const string &EthernetPacket::getDestinationAddress() const {
+const std::string& EthernetPacket::getDestinationAddress() const {
     return destinationAddress;
 }
 
-void EthernetPacket::setDestinationAddress(const string &destinationAddress) {
-    EthernetPacket::destinationAddress = destinationAddress;
+void EthernetPacket::setDestinationAddress(const std::string& destinationAddress) {
+    this->destinationAddress = destinationAddress;
 }
 
-const string &EthernetPacket::getCrc() const {
+const std::string& EthernetPacket::getSourceAddress() const {
+    return sourceAddress;
+}
+
+void EthernetPacket::setSourceAddress(const std::string& sourceAddress) {
+    this->sourceAddress = sourceAddress;
+}
+
+const std::string& EthernetPacket::getCrc() const {
     return crc;
 }
 
-void EthernetPacket::setCrc(const string &crc) {
-    EthernetPacket::crc = crc;
+void EthernetPacket::setCrc(const std::string& crc) {
+    this->crc = crc;
 }
 
-const string &EthernetPacket::getPacketType() const {
+const std::string& EthernetPacket::getPacketType() const {
     return packetType;
 }
 
-void EthernetPacket::setPacketType(const string &packetType) {
-    EthernetPacket::packetType = packetType;
+void EthernetPacket::setPacketType(const std::string& packetType) {
+    this->packetType = packetType;
 }
 
-void EthernetPacket::processPacketData() {
-    
+std::string EthernetPacket::getPacketInfo() const {
+    std::stringstream ss;
+    ss << "CRC: " << crc << "\n";
+    ss << "Destination Address: " << destinationAddress << "\n";
+    ss << "Source Address: " << sourceAddress << "\n";
+    ss << "Type: " << packetType << "\n";
+    return ss.str();
 }
