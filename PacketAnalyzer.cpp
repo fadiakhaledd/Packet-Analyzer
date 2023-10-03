@@ -24,14 +24,6 @@ void PacketAnalyzer::setOutputFileName(const string& outputFileName) {
     this->outputFileName = outputFileName;
 }
 
-const vector<EthernetPacket*>& PacketAnalyzer::getPackets() const {
-    return packets;
-}
-
-void PacketAnalyzer::setPackets(const vector<EthernetPacket*>& packets) {
-    this->packets = packets;
-}
-
 void PacketAnalyzer::parseEthernetPacket(const EthernetPacket& packet) {
     // Parsing logic for Ethernet packets
 }
@@ -41,32 +33,35 @@ void PacketAnalyzer::parseECPRIPacket(const EcpriPacket& packet) {
 }
 void PacketAnalyzer::readFromInputFile() {
     ifstream inputFileStream(inputFileName, ios::in);
-    string line;
+    string packetDataInput;
 
     if (!inputFileStream) {
         cerr << "Failed to open input file." << endl;
         return;
     }
 
-    while (getline(inputFileStream, line)) {
-        cout << line << endl << endl;
+    while (getline(inputFileStream, packetDataInput)) {
+        string packetType = packetDataInput.substr(40, 4);
+        if (packetType == "AEFE") {
+//            EcpriPacket *ecpriPacket = new EcpriPacket(packetDataInput);
+//            cout << ecpriPacket->getConcatenationIndicator() << endl;
+//            cout << ecpriPacket->getMessageType() << endl;
+        }
+
     }
 
     inputFileStream.close();
 }
 
 void PacketAnalyzer::writeToOutputFile() {
-    ofstream outputFile(outputFileName, ios::binary);
+    ofstream outputFile(outputFileName, ios::out);
+
     if (!outputFile) {
         cerr << "Failed to open output file." << endl;
         return;
     }
 
-    // Write packets to the output file
-    for (const EthernetPacket* packet : packets) {
-        // Write the packet to the file
-        outputFile.write(reinterpret_cast<const char*>(packet), sizeof(EthernetPacket));
-    }
+
 
     outputFile.close();
 }

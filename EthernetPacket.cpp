@@ -42,3 +42,7 @@ const string &EthernetPacket::getSourceAddress() const {
 void EthernetPacket::setSourceAddress(const string &sourceAddress) {
     EthernetPacket::sourceAddress = sourceAddress;
 }
+
+void EthernetPacket::processPacketData() {
+return;
+}

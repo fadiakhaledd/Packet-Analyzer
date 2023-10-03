@@ -14,8 +14,6 @@ class PacketAnalyzer {
 protected:
     string inputFileName;
     string outputFileName;
-    vector <EthernetPacket*> packets;
-
 public:
 
     PacketAnalyzer(string, string);
@@ -27,10 +25,6 @@ public:
     const string &getOutputFileName() const;
 
     void setOutputFileName(const string &outputFileName);
-
-    const vector<EthernetPacket *> &getPackets() const;
-
-    void setPackets(const vector<EthernetPacket *> &packets);
 
     void parseEthernetPacket(const EthernetPacket& packet);
 

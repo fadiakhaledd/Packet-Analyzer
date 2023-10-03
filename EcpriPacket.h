@@ -15,34 +15,23 @@ private:
     string rtcId;
     string sequenceId;
 
-public:
-    const string &getConcatenationIndicator() const;
-    void setConcatenationIndicator(const string &concatenationIndicator);
-
-    const string &getMessageType() const;
-    void setMessageType(const string &messageType);
-
-    const string &getPayloadSize() const;
-    void setPayloadSize(const string &payloadSize);
-
-    const string &getProtocolVersion() const;
-    void setProtocolVersion(const string &protocolVersion);
-
-    const string &getRtcId() const;
-    void setRtcId(const string &rtcId);
-
-    const string &getSequenceId() const;
-    void setSequenceId(const string &sequenceId);
-
     void processPacketData();
-    
-    const string &EcpriPacket::getProtocolVersionFromData() const;
-    const string &EcpriPacket::getmessageTypeFromData() const;
-    const string &EcpriPacket::getPayloadSizeFromData() const;
-    const string &EcpriPacket::getRtcIdFromData() const;
-    const string &EcpriPacket::getSequenceIdFromData() const;
-    const string &EcpriPacket::getConcatenationIndicatorFromData() const;
-    
+    const string &extractProtocolVersionFromData() const;
+    const string &extractMessageTypeFromData() const;
+    const string &extractPayloadSizeFromData() const;
+    const string &extractRtcIdFromData() const;
+    const string &getSequenceIdFromData() const;
+    const string &extractConcatenationIndicatorFromData() const;
+
+public:
+    EcpriPacket(string packetData);
+    const string &getConcatenationIndicator() const;
+    const string &getMessageType() const;
+    const string &getPayloadSize() const;
+    const string &getProtocolVersion() const;
+    const string &getRtcId() const;
+    const string &getSequenceId() const;
+
 };
 
 #endif
