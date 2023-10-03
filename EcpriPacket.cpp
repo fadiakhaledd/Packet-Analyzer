@@ -2,8 +2,7 @@
 
 using namespace std;
 
-EcpriPacket::EcpriPacket(string const packetData) {
-    this->packetData = packetData;
+EcpriPacket::EcpriPacket(string const packetData): EthernetPacket(packetData) {
     processPacketData();
 }
 
