@@ -33,6 +33,16 @@ public:
 
     const string &getSequenceId() const;
     void setSequenceId(const string &sequenceId);
+
+    void processPacketData();
+    
+    const string &EcpriPacket::getProtocolVersionFromData() const;
+    const string &EcpriPacket::getmessageTypeFromData() const;
+    const string &EcpriPacket::getPayloadSizeFromData() const;
+    const string &EcpriPacket::getRtcIdFromData() const;
+    const string &EcpriPacket::getSequenceIdFromData() const;
+    const string &EcpriPacket::getConcatenationIndicatorFromData() const;
+    
 };
 
 #endif

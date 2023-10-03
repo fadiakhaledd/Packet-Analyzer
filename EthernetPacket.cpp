@@ -34,3 +34,7 @@ const string &EthernetPacket::getPacketType() const {
 void EthernetPacket::setPacketType(const string &packetType) {
     EthernetPacket::packetType = packetType;
 }
+
+void EthernetPacket::processPacketData() {
+    
+}

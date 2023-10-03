@@ -24,6 +24,8 @@ public:
 
     const string &getPacketType() const;
     void setPacketType(const string &packetType);
+
+    void processPacketData();
 };
 
 #endif
