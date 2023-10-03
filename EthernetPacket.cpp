@@ -1,4 +1,5 @@
 #include "EthernetPacket.h"
+#include "EcpriPacket.h"
 
 using namespace std;
 

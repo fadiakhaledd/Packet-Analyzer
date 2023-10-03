@@ -7,4 +7,6 @@ add_executable(Packet_Analyzer main.cpp
         EthernetPacket.h
         EthernetPacket.cpp
         EcpriPacket.cpp
-        EcpriPacket.h)
+        EcpriPacket.h
+        PacketAnalyzer.cpp
+        PacketAnalyzer.h)
