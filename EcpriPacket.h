@@ -4,7 +4,7 @@
 #include "EthernetPacket.h"
 #include <string>
 
-using namespace std; 
+using namespace std;
 
 class EcpriPacket : public EthernetPacket {
 protected:
@@ -21,21 +21,12 @@ protected:
     const string extractRtcIdFromData() const;
     const string extractSequenceIdFromData() const;
     const string extractConcatenationIndicatorFromData() const;
-    ostream &stringfyPacketData(ostream &os) const;
+    ostream &stringifyPacketData(ostream &outStream) const;
     void processPacketData();
-
 
 public:
     EcpriPacket(string packetData);
-    const string getConcatenationIndicator() const;
-    const string getMessageType() const;
-    const string getPayloadSize() const;
-    const string getProtocolVersion() const;
-    const string getRtcId() const;
-    const string getSequenceId() const;
     friend std::ostream& operator<<(std::ostream &os,EcpriPacket const obj);
-
-
 
 };
 

@@ -14,24 +14,13 @@ class PacketAnalyzer {
 protected:
     string inputFileName;
     string outputFileName;
+    vector<EthernetPacket*> packetsPointers;
 public:
 
     PacketAnalyzer(string, string);
-
-    const string &getInputFileName() const;
-
     void setInputFileName(const string &inputFileName);
-
-    const string &getOutputFileName() const;
-
     void setOutputFileName(const string &outputFileName);
-
-    void parseEthernetPacket(const EthernetPacket& packet);
-
-    void parseECPRIPacket(const EcpriPacket& packet);
-
     void readFromInputFile();
-
     void writeToOutputFile();
 
 };

@@ -8,28 +8,12 @@ PacketAnalyzer::PacketAnalyzer(string inputFileName, string outputFileName) {
     setOutputFileName(outputFileName);
 }
 
-const string &PacketAnalyzer::getInputFileName() const {
-    return inputFileName;
-}
-
 void PacketAnalyzer::setInputFileName(const string &inputFileName) {
     this->inputFileName = inputFileName;
 }
 
-const string &PacketAnalyzer::getOutputFileName() const {
-    return outputFileName;
-}
-
 void PacketAnalyzer::setOutputFileName(const string &outputFileName) {
     this->outputFileName = outputFileName;
-}
-
-void PacketAnalyzer::parseEthernetPacket(const EthernetPacket &packet) {
-    // Parsing logic for Ethernet packets
-}
-
-void PacketAnalyzer::parseECPRIPacket(const EcpriPacket &packet) {
-    // Parsing logic for ECPRI packets
 }
 
 void PacketAnalyzer::readFromInputFile() {
@@ -46,11 +30,10 @@ void PacketAnalyzer::readFromInputFile() {
         EthernetPacket *packet;
         if (packetType == "AEFE") {
             packet = new EcpriPacket(packetDataInput);
-            cout << *packet;
         } else {
-//            packet = new EthernetPacket(packetDataInput);
+            packet = new EthernetPacket(packetDataInput);
         }
-        break;
+        packetsPointers.push_back(packet);
     }
     inputFileStream.close();
 }
@@ -63,6 +46,12 @@ void PacketAnalyzer::writeToOutputFile() {
         return;
     }
 
-
+    int packetsPointersSize = packetsPointers.size();
+    for (int index = 0; index < packetsPointersSize; ++index) {
+        outputFile << "Packet # " << index << ": " << endl;
+        outputFile << *packetsPointers[index] << endl;
+        outputFile << "********************************************************************************************"
+                      "***************************************************************************************" << endl;
+    }
     outputFile.close();
 }

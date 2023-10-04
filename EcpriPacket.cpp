@@ -3,33 +3,19 @@
 
 using namespace std;
 
+const int PROTOCOL_VERSION_OFFSET = 44;
+const int MESSAGE_TYPE_OFFSET = 46;
+const int MESSAGE_TYPE_LENGTH = 2;
+const int CONCATENATION_INDICATOR_OFFSET = 45;
+const int PAYLOAD_SIZE_OFFSET = 48;
+const int PAYLOAD_SIZE_LENGTH = 4;
+const int RTC_ID_OFFSET = 52;
+const int RTC_ID_LENGTH = 4;
+const int SEQUENCE_ID_OFFSET = 56;
+const int SEQUENCE_ID_LENGTH = 4;
+
 EcpriPacket::EcpriPacket(string const packetData) : EthernetPacket(packetData) {
-
     processPacketData();
-}
-
-const string EcpriPacket::getConcatenationIndicator() const {
-    return concatenationIndicator;
-}
-
-const string EcpriPacket::getMessageType() const {
-    return messageType;
-}
-
-const string EcpriPacket::getPayloadSize() const {
-    return payloadSize;
-}
-
-const string EcpriPacket::getProtocolVersion() const {
-    return protocolVersion;
-}
-
-const string EcpriPacket::getRtcId() const {
-    return rtcId;
-}
-
-const string EcpriPacket::getSequenceId() const {
-    return sequenceId;
 }
 
 void EcpriPacket::processPacketData() {
@@ -42,42 +28,42 @@ void EcpriPacket::processPacketData() {
 
 }
 
+
 const string EcpriPacket::extractProtocolVersionFromData() const {
-    string protocolVersion = "";
-    protocolVersion += packetData[44]; // The first character of the first byte Data field
-    return protocolVersion;
+    const int CHAR_COUNT = 1;
+    return string(CHAR_COUNT, packetData[PROTOCOL_VERSION_OFFSET]);
 }
 
 const string EcpriPacket::extractMessageTypeFromData() const {
-    string messageType = packetData.substr(46, 2); // The second bytes of Data field
-    return messageType;
+    return packetData.substr(MESSAGE_TYPE_OFFSET, MESSAGE_TYPE_LENGTH); // The second bytes of Data field;
 }
 
 const string EcpriPacket::extractConcatenationIndicatorFromData() const {
-    int byte45AsInt = packetData[45] - '0'; // The second character of the first byte of Data field
-    int LSBOfByte45 = byte45AsInt & 1;
-    string concatenationIndicator = "";
-    concatenationIndicator += LSBOfByte45;
-    return concatenationIndicator;
+    int byte45AsInt =
+            packetData[CONCATENATION_INDICATOR_OFFSET] - '0'; // The second character of the first byte of Data field
+    int LSBOfByte45 = (byte45AsInt & 1);
+    return to_string(LSBOfByte45);
 }
 
 const string EcpriPacket::extractPayloadSizeFromData() const {
-    string payloadSize = packetData.substr(48, 4); // Bytes 3, 4 of Data field
-    return payloadSize;
+    return packetData.substr(PAYLOAD_SIZE_OFFSET, PAYLOAD_SIZE_LENGTH); // Bytes 3, 4 of Data field
 }
 
 const string EcpriPacket::extractRtcIdFromData() const {
-    string rtcId = packetData.substr(52, 4); // Bytes 5, 6 of Data field
-    return rtcId;
+    return packetData.substr(RTC_ID_OFFSET, RTC_ID_LENGTH); // Bytes 5, 6 of Data field;
 }
 
 const string EcpriPacket::extractSequenceIdFromData() const {
-    string sequenceId = packetData.substr(56, 4); // Bytes 7, 8 of Data field
-    return sequenceId;
+    return packetData.substr(SEQUENCE_ID_OFFSET, SEQUENCE_ID_LENGTH); // Bytes 7, 8 of Data field
 }
 
-ostream &EcpriPacket::stringfyPacketData(ostream &os) const {
-    EthernetPacket::stringfyPacketData(os);
-    os << "Sequence ID: " << sequenceId << endl;
-    return os;
+ostream &EcpriPacket::stringifyPacketData(ostream &outStream) const {
+    EthernetPacket::stringifyPacketData(outStream);
+    outStream << "Concatenation Indicator: " << concatenationIndicator << endl;
+    outStream << "Message Type: " << messageType << endl;
+    outStream << "Payload Size: " << payloadSize << endl;
+    outStream << "Protocol Version: " << protocolVersion << endl;
+    outStream << "RTC ID: " << rtcId << endl;
+    outStream << "Sequence ID: " << sequenceId << endl;
+    return outStream;
 }
