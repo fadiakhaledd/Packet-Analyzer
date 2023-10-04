@@ -8,29 +8,30 @@ PacketAnalyzer::PacketAnalyzer(string inputFileName, string outputFileName) {
     setOutputFileName(outputFileName);
 }
 
-const string& PacketAnalyzer::getInputFileName() const {
+const string &PacketAnalyzer::getInputFileName() const {
     return inputFileName;
 }
 
-void PacketAnalyzer::setInputFileName(const string& inputFileName) {
+void PacketAnalyzer::setInputFileName(const string &inputFileName) {
     this->inputFileName = inputFileName;
 }
 
-const string& PacketAnalyzer::getOutputFileName() const {
+const string &PacketAnalyzer::getOutputFileName() const {
     return outputFileName;
 }
 
-void PacketAnalyzer::setOutputFileName(const string& outputFileName) {
+void PacketAnalyzer::setOutputFileName(const string &outputFileName) {
     this->outputFileName = outputFileName;
 }
 
-void PacketAnalyzer::parseEthernetPacket(const EthernetPacket& packet) {
+void PacketAnalyzer::parseEthernetPacket(const EthernetPacket &packet) {
     // Parsing logic for Ethernet packets
 }
 
-void PacketAnalyzer::parseECPRIPacket(const EcpriPacket& packet) {
+void PacketAnalyzer::parseECPRIPacket(const EcpriPacket &packet) {
     // Parsing logic for ECPRI packets
 }
+
 void PacketAnalyzer::readFromInputFile() {
     ifstream inputFileStream(inputFileName, ios::in);
     string packetDataInput;
@@ -42,14 +43,15 @@ void PacketAnalyzer::readFromInputFile() {
 
     while (getline(inputFileStream, packetDataInput)) {
         string packetType = packetDataInput.substr(40, 4);
+        EthernetPacket *packet;
         if (packetType == "AEFE") {
-//            EcpriPacket *ecpriPacket = new EcpriPacket(packetDataInput);
-//            cout << ecpriPacket->getConcatenationIndicator() << endl;
-//            cout << ecpriPacket->getMessageType() << endl;
+            packet = new EcpriPacket(packetDataInput);
+            cout << *packet;
+        } else {
+//            packet = new EthernetPacket(packetDataInput);
         }
-
+        break;
     }
-
     inputFileStream.close();
 }
 
@@ -60,7 +62,6 @@ void PacketAnalyzer::writeToOutputFile() {
         cerr << "Failed to open output file." << endl;
         return;
     }
-
 
 
     outputFile.close();

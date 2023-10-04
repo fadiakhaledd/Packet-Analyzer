@@ -4,35 +4,39 @@
 #include <string>
 #include <sstream>
 
+using namespace std; 
 class EthernetPacket {
 protected:
-    std::string packetData;
-    std::string destinationAddress;
-    std::string sourceAddress;
-    std::string crc;
-    std::string packetType;
+    string packetData;
+    string destinationAddress;
+    string sourceAddress;
+    string crc;
+    string packetType;
+    virtual void processPacketData();
+    virtual ostream &stringfyPacketData(ostream &os) const;
 
 public:
-    EthernetPacket(const std::string& packetData);
+    EthernetPacket(const string packetData);
 
-    const std::string& getPacketData() const;
-    void setPacketData(const std::string& packetData);
+    const string& getPacketData() const;
+    void setPacketData(const string& packetData);
 
-    const std::string& getDestinationAddress() const;
-    void setDestinationAddress(const std::string& destinationAddress);
+    const string& getDestinationAddress() const;
+    void setDestinationAddress(const string& destinationAddress);
 
-    const std::string& getSourceAddress() const;
-    void setSourceAddress(const std::string& sourceAddress);
+    const string& getSourceAddress() const;
+    void setSourceAddress(const string& sourceAddress);
 
-    const std::string& getCrc() const;
-    void setCrc(const std::string& crc);
+    const string& getCrc() const;
+    void setCrc(const string& crc);
 
-    const std::string& getPacketType() const;
-    void setPacketType(const std::string& packetType);
+    const string& getPacketType() const;
+    void setPacketType(const string& packetType);
 
-    std::string getPacketInfo() const;
+    string getPacketInfo() const;
 
-    void processPacketData();
+    friend ostream& operator<<(ostream &os, EthernetPacket const &obj);
 };
 
 #endif
+
