@@ -26,18 +26,17 @@ protected:
     string rtcId;
     string sequenceId;
 
-    const string extractProtocolVersionFromData() const;
-    const string extractMessageTypeFromData() const;
-    const string extractPayloadSizeFromData() const;
-    const string extractRtcIdFromData() const;
-    const string extractSequenceIdFromData() const;
-    const string extractConcatenationIndicatorFromData() const;
-    ostream &stringifyPacketData(ostream &outStream) const;
-    void processPacketData();
+    string extractProtocolVersionFromData() const;
+    string extractMessageTypeFromData() const;
+    string extractPayloadSizeFromData() const;
+    string extractRtcIdFromData() const;
+    string extractSequenceIdFromData() const;
+    string extractConcatenationIndicatorFromData() const;
+    ostream &stringifyPacketData(ostream &outStream) const override;
+    void processPacketData() override;
 
 public:
-    EcpriPacket(string packetData);
-    friend std::ostream& operator<<(std::ostream &os,EcpriPacket const obj);
+    EcpriPacket(const string& packetData);
 
 };
 

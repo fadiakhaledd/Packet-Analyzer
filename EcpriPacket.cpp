@@ -14,7 +14,7 @@ const int RTC_ID_LENGTH = 4;
 const int SEQUENCE_ID_OFFSET = 56;
 const int SEQUENCE_ID_LENGTH = 4;
 
-EcpriPacket::EcpriPacket(string const packetData) : EthernetPacket(packetData) {
+EcpriPacket::EcpriPacket(string const& packetData) : EthernetPacket(packetData) {
     processPacketData();
 }
 
@@ -28,32 +28,31 @@ void EcpriPacket::processPacketData() {
 
 }
 
-
-const string EcpriPacket::extractProtocolVersionFromData() const {
+string EcpriPacket::extractProtocolVersionFromData() const {
     const int CHAR_COUNT = 1;
     return string(CHAR_COUNT, packetData[PROTOCOL_VERSION_OFFSET]);
 }
 
-const string EcpriPacket::extractMessageTypeFromData() const {
+string EcpriPacket::extractMessageTypeFromData() const {
     return packetData.substr(MESSAGE_TYPE_OFFSET, MESSAGE_TYPE_LENGTH); // The second bytes of Data field;
 }
 
-const string EcpriPacket::extractConcatenationIndicatorFromData() const {
+string EcpriPacket::extractConcatenationIndicatorFromData() const {
     int byte45AsInt =
             packetData[CONCATENATION_INDICATOR_OFFSET] - '0'; // The second character of the first byte of Data field
     int LSBOfByte45 = (byte45AsInt & 1);
     return to_string(LSBOfByte45);
 }
 
-const string EcpriPacket::extractPayloadSizeFromData() const {
+string EcpriPacket::extractPayloadSizeFromData() const {
     return packetData.substr(PAYLOAD_SIZE_OFFSET, PAYLOAD_SIZE_LENGTH); // Bytes 3, 4 of Data field
 }
 
-const string EcpriPacket::extractRtcIdFromData() const {
+string EcpriPacket::extractRtcIdFromData() const {
     return packetData.substr(RTC_ID_OFFSET, RTC_ID_LENGTH); // Bytes 5, 6 of Data field;
 }
 
-const string EcpriPacket::extractSequenceIdFromData() const {
+string EcpriPacket::extractSequenceIdFromData() const {
     return packetData.substr(SEQUENCE_ID_OFFSET, SEQUENCE_ID_LENGTH); // Bytes 7, 8 of Data field
 }
 

@@ -1,9 +1,10 @@
 #include "PacketAnalyzer.h"
 #include <fstream>
+#include "PacketFactory.h"
 
 using namespace std;
 
-PacketAnalyzer::PacketAnalyzer(string inputFileName, string outputFileName) {
+PacketAnalyzer::PacketAnalyzer(const string& inputFileName, const string& outputFileName) {
     setInputFileName(inputFileName);
     setOutputFileName(outputFileName);
 }
@@ -25,17 +26,15 @@ void PacketAnalyzer::readFromInputFile() {
         return;
     }
 
+    EthernetPacket *packetPointer;
     while (getline(inputFileStream, packetDataInput)) {
-        string packetType = packetDataInput.substr(40, 4);
-        EthernetPacket *packet;
-        if (packetType == "AEFE") {
-            packet = new EcpriPacket(packetDataInput);
-        } else {
-            packet = new EthernetPacket(packetDataInput);
-        }
-        packetsPointers.push_back(packet);
+        packetPointer = PacketFactory::getPackedBasedOnType(packetDataInput);
+        packetsPointers.push_back(packetPointer);
     }
     inputFileStream.close();
+
+    packetPointer = 0;
+    delete packetPointer;
 }
 
 void PacketAnalyzer::writeToOutputFile() {
@@ -51,7 +50,14 @@ void PacketAnalyzer::writeToOutputFile() {
         outputFile << "Packet # " << index << ": " << endl;
         outputFile << *packetsPointers[index] << endl;
         outputFile << "********************************************************************************************"
-                      "***************************************************************************************" << endl;
+                      "***************************************************************************************\n" << endl;
     }
     outputFile.close();
+}
+
+PacketAnalyzer::~PacketAnalyzer() {
+    for (EthernetPacket* pointer: packetsPointers) {
+        delete pointer;
+    }
+    packetsPointers.clear();
 }

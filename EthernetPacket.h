@@ -22,20 +22,19 @@ protected:
     string sourceAddress;
     string crc;
     string packetType;
+
     virtual void processPacketData();
+
     virtual ostream &stringifyPacketData(ostream &outStream) const;
 
 public:
-    EthernetPacket(const string packetData);
-    friend ostream& operator<<(ostream &os, EthernetPacket const &obj);
-
-    const string extractCrcFromData() const;
-
-    const string extractDestinationAddressFromData() const;
-
-    const string extractSourceAddressFromData() const;
-
-    const string extractTypeFromData() const;
+    EthernetPacket(const string& packetData);
+    virtual ~EthernetPacket() = default;
+    friend ostream &operator<<(ostream &os, EthernetPacket const &obj);
+    string extractCrcFromData() const;
+    string extractDestinationAddressFromData() const;
+    string extractSourceAddressFromData() const;
+    string extractTypeFromData() const;
 };
 
 #endif

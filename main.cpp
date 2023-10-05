@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-    PacketAnalyzer packetAnalyzer("input_packets.txt", "outputFile.txt");
+    PacketAnalyzer packetAnalyzer("input_packets.txt", "output_packets.txt");
     packetAnalyzer.readFromInputFile();
     packetAnalyzer.writeToOutputFile();
 

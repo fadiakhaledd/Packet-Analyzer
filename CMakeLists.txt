@@ -9,4 +9,6 @@ add_executable(Packet_Analyzer main.cpp
         EcpriPacket.cpp
         EcpriPacket.h
         PacketAnalyzer.cpp
-        PacketAnalyzer.h)
+        PacketAnalyzer.h
+        PacketFactory.cpp
+        PacketFactory.h)

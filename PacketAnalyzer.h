@@ -17,11 +17,13 @@ protected:
     vector<EthernetPacket*> packetsPointers;
 public:
 
-    PacketAnalyzer(string, string);
+    PacketAnalyzer(const string&, const string&);
+    ~PacketAnalyzer();
     void setInputFileName(const string &inputFileName);
     void setOutputFileName(const string &outputFileName);
     void readFromInputFile();
     void writeToOutputFile();
+
 
 };
 
