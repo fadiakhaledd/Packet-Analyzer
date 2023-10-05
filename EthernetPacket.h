@@ -5,6 +5,16 @@
 #include <sstream>
 
 using namespace std;
+
+extern const int PACKET_MIN_LENGTH;
+extern const int CRC_LENGTH;
+extern const int DESTINATION_ADDRESS_START;
+extern const int DESTINATION_ADDRESS_LENGTH;
+extern const int SOURCE_ADDRESS_START;
+extern const int SOURCE_ADDRESS_LENGTH;
+extern const int TYPE_START;
+extern const int TYPE_LENGTH;
+
 class EthernetPacket {
 protected:
     string packetData;

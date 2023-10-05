@@ -4,9 +4,18 @@
 
 using namespace std;
 
+const int PACKET_MIN_LENGTH = 52;
+const int CRC_LENGTH = 8;
+const int DESTINATION_ADDRESS_START = 16;
+const int DESTINATION_ADDRESS_LENGTH = 12;
+const int SOURCE_ADDRESS_START = 28;
+const int SOURCE_ADDRESS_LENGTH = 12;
+const int TYPE_START = 40;
+const int TYPE_LENGTH = 4;
+
 EthernetPacket::EthernetPacket(const string packetData) {
 
-    if (packetData.length() < 52) {
+    if (packetData.length() < PACKET_MIN_LENGTH) {
         throw std::runtime_error("Invalid packetData: Insufficient length");
     }
     this->packetData = packetData;
@@ -22,19 +31,19 @@ void EthernetPacket::processPacketData() {
 }
 
 const string EthernetPacket::extractCrcFromData() const {
-    return packetData.substr(packetData.length() - 8);
+    return packetData.substr(packetData.length() - CRC_LENGTH);
 }
 
 const string EthernetPacket::extractDestinationAddressFromData() const {
-    return packetData.substr(16, 12);
+    return packetData.substr(DESTINATION_ADDRESS_START, DESTINATION_ADDRESS_LENGTH);
 }
 
 const string EthernetPacket::extractSourceAddressFromData() const {
-    return packetData.substr(28, 12);
+    return packetData.substr(SOURCE_ADDRESS_START, SOURCE_ADDRESS_LENGTH);
 }
 
 const string EthernetPacket::extractTypeFromData() const {
-    return packetData.substr(40, 4);
+    return packetData.substr(TYPE_START, TYPE_LENGTH);
 }
 
 ostream &operator<<(ostream &outStream, EthernetPacket const &obj) {
@@ -49,4 +58,3 @@ ostream &EthernetPacket::stringifyPacketData(ostream &outStream) const {
     outStream << "Type: " << packetType << endl;
     return outStream;
 }
-
