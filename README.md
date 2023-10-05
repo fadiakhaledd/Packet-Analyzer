@@ -59,8 +59,8 @@ Type: 88F7
    #include "PacketAnalyzer.h"
    
 4. In the main() function of the main program file (e.g., main.cpp), create a PacketAnalyzer instance, specifying the input and output file names:
-
-   int main() {
+ ```cpp
+int main() {
     PacketAnalyzer packetAnalyzer("input_packets.txt", "outputFile.txt");
     packetAnalyzer.readFromInputFile();
     packetAnalyzer.writeToOutputFile();
