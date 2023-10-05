@@ -13,11 +13,8 @@ The Packet Analyzer is a software tool designed to read input text files contain
 
 Sample Input:
 
-02C9D9300000AEFE0000000000000800
-02C9D9300000FFFF0000000000000800
-
-vbnet
-Copy code
+FB555555555555D50000000000C1ECCD655507D9AEFE1002001480680180900000400101D10000100000FFFE7E040000000000000000000000000000000000000000000099AC762B
+FB555555555555D5011B19000000ECCD655507D988F70B120040EE007F630000000005397FB111221122ABBADEADBEEFCAFEFEED0001057F0000633090181625A4E8FDEC00FECDDCEFFEFF4444444455555555CAFECC000F70B3
 
 ## Output Format
 
@@ -26,15 +23,28 @@ Copy code
 
 Sample Output:
 
-Packet Data: 02C9D9300000AEFE0000000000000800
-CRC: 00000000
-Destination Address: 02C9D9300000
-Source Address: AEFE00000000
-Type: 00000800
-This is an e-CPRI frame.
 
-c
-Copy code
+Packet # 1:
+FB555555555555D50000000000C1ECCD655507D9AEFE1002001480680180900000400101D10000100000FFFE7E040000000000000000000000000000000000000000000099AC762B
+CRC: 99AC762B
+Concatenation Indicator: 0
+Destination Address: 0000000000C1
+Message Type: 02
+Payload Size: 0014
+Protocol Version: 1
+RTC ID: 8068
+Sequence ID: 0180
+Source Address: ECCD655507D9
+Type: AEFE
+
+**************************************************************************************************************************************************************************************************************************************
+
+Packet # 2:
+FB555555555555D5011B19000000ECCD655507D988F70B120040EE007F630000000005397FB111221122ABBADEADBEEFCAFEFEED0001057F0000633090181625A4E8FDEC00FECDDCEFFEFF4444444455555555CAFECC000F70B3
+CRC: 000F70B3
+Destination Address: 011B19000000
+Source Address: ECCD655507D9
+Type: 88F7
 
 ## Running the Program
 
@@ -47,6 +57,7 @@ Copy code
    #include "EthernetPacket.h"
    #include "EcpriPacket.h"
    #include "PacketAnalyzer.h"
+   
 4. In the main() function of the main program file (e.g., main.cpp), create a PacketAnalyzer instance, specifying the input and output file names:
 
    int main() {
