@@ -47,23 +47,23 @@ Sample Output:
 
 1. Clone or download the project repository.
 2. Open the project in your preferred C++ development environment (e.g., Visual Studio Code).
-3. Ensure that you have the following header files included:
+   3. Ensure that you have the following header files included:
 
-   ```cpp
-   #include <iostream>
-   #include "EthernetPacket.h"
-   #include "EcpriPacket.h"
-   #include "PacketAnalyzer.h"
+      ```cpp
+      #include <iostream>
+      #include "EthernetPacket.h"
+      #include "EcpriPacket.h"
+      #include "PacketAnalyzer.h"
    
-4. In the main() function of the main program file (e.g., main.cpp), create a PacketAnalyzer instance, specifying the input and output file names:
+      4. In the main() function of the main program file (e.g., main.cpp), create a PacketAnalyzer instance, specifying the input and output file names:
    
-   ```cpp
-   int main() {
-       PacketAnalyzer packetAnalyzer("input_packets.txt", "outputFile.txt");
-       packetAnalyzer.readFromInputFile();
-       packetAnalyzer.writeToOutputFile();
-       return 0;
-    }
+         ```cpp
+         int main() {
+             PacketAnalyzer packetAnalyzer("../input_packets.txt", "../output_packets.txt");
+             packetAnalyzer.readFromInputFile();
+             packetAnalyzer.writeToOutputFile();
+             return 0;
+          }
 
 5. Make sure that the input file is placed in the same folder with the (main.cpp) file. 
 6. Build and run the program using your C++ development environment.
