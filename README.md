@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Packet Analyzer is a software tool designed to read input text files containing Ethernet packets, parse each packet into its individual fields, and save the parsed packets along with their fields to an output text file. This README provides an overview of the project, the input and output formats, instructions on how to run the program, a UML diagram depicting the project's design, and contact information.
+The Packet Analyzer is a software tool designed to read input text files containing Ethernet packets, parse each packet into its individual fields, and save the parsed packets along with their fields to an output text file. This README provides an overview of the project, the input and output formats, instructions on how to run the program and a UML diagram depicting the project's design.
 
 ## Input Format
 
