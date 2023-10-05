@@ -65,8 +65,9 @@ Sample Output:
        return 0;
     }
 
-5. Build and run the program using your C++ development environment.
-6. The parsed packets will be saved to the specified output file.
+5. Make sure that the input file is placed in the same folder with the (main.cpp) file. 
+6. Build and run the program using your C++ development environment.
+7. The parsed packets will be saved to the specified output file.
    
 ##  UML Diagram
 ![UML Diagram](uml_diagram.jpg)
