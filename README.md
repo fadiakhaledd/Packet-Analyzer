@@ -59,13 +59,14 @@ Type: 88F7
    #include "PacketAnalyzer.h"
    
 4. In the main() function of the main program file (e.g., main.cpp), create a PacketAnalyzer instance, specifying the input and output file names:
- ```cpp
-int main() {
-    PacketAnalyzer packetAnalyzer("input_packets.txt", "outputFile.txt");
-    packetAnalyzer.readFromInputFile();
-    packetAnalyzer.writeToOutputFile();
-    return 0;
-}
+   
+   ```cpp
+   int main() {
+       PacketAnalyzer packetAnalyzer("input_packets.txt", "outputFile.txt");
+       packetAnalyzer.readFromInputFile();
+       packetAnalyzer.writeToOutputFile();
+       return 0;
+    }
 
 5. Build and run the program using your C++ development environment.
 6. The parsed packets will be saved to the specified output file.
