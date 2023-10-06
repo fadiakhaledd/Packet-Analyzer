@@ -1,7 +1,3 @@
-//
-// Created by Fadia khaled on 05/10/2023.
-//
-
 #include "PacketFactory.h"
 #include "EthernetPacket.h"
 #include "EcpriPacket.h"
