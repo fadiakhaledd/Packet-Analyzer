@@ -25,7 +25,6 @@ void EcpriPacket::processPacketData() {
     payloadSize = extractPayloadSizeFromData();
     rtcId = extractRtcIdFromData();
     sequenceId = extractSequenceIdFromData();
-
 }
 
 string EcpriPacket::extractProtocolVersionFromData() const {

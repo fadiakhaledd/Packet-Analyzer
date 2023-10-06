@@ -23,6 +23,7 @@ public:
     void setOutputFileName(const string &outputFileName);
     void readFromInputFile();
     void writeToOutputFile();
+    void checkPacketLength(string packetDataInput);
 };
 
 #endif

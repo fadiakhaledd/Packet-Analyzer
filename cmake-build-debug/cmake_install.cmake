@@ -1,4 +1,4 @@
-# Install script for directory: E:/Siemens Diploma/To Students/Effective Coding/OOP/Assignment Submission/Packet-Analyzer
+# Install script for directory: D:/Siemens/Assignments/Effective Coding/OOP/Packet-Analyzer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Users/Fadia khaled/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/232.8660.186/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/MinGW/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Siemens Diploma/To Students/Effective Coding/OOP/Assignment Submission/Packet-Analyzer/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/Siemens/Assignments/Effective Coding/OOP/Packet-Analyzer/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

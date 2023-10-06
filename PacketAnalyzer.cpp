@@ -4,6 +4,9 @@
 
 using namespace std;
 
+const int PACKET_MIN_LENGTH = 144;
+const int PACKET_MAX_LENGTH = 3052;
+
 PacketAnalyzer::PacketAnalyzer(const string& inputFileName, const string& outputFileName) {
     setInputFileName(inputFileName);
     setOutputFileName(outputFileName);
@@ -18,41 +21,56 @@ void PacketAnalyzer::setOutputFileName(const string &outputFileName) {
 }
 
 void PacketAnalyzer::readFromInputFile() {
-    ifstream inputFileStream(inputFileName, ios::in);
-    string packetDataInput;
+    try {
+        ifstream inputFileStream(inputFileName, ios::in);
+        string packetDataInput;
 
-    if (!inputFileStream) {
-        cerr << "Failed to open input file." << endl;
-        return;
+        if (!inputFileStream) {
+            throw runtime_error("Failed to open input file.");
+        }
+
+        EthernetPacket *packetPointer;
+        while (getline(inputFileStream, packetDataInput)) {
+            checkPacketLength(packetDataInput);
+            packetPointer = PacketFactory::getPackedBasedOnType(packetDataInput);
+            packetsPointers.push_back(packetPointer);
+        }
+        inputFileStream.close();
+
+        packetPointer = 0;
+        delete packetPointer;
+    }
+    catch (exception& error) {
+        cout << "Error: " << error.what() << endl;
     }
 
-    EthernetPacket *packetPointer;
-    while (getline(inputFileStream, packetDataInput)) {
-        packetPointer = PacketFactory::getPackedBasedOnType(packetDataInput);
-        packetsPointers.push_back(packetPointer);
-    }
-    inputFileStream.close();
-
-    packetPointer = 0;
-    delete packetPointer;
 }
 
 void PacketAnalyzer::writeToOutputFile() {
-    ofstream outputFile(outputFileName, ios::out);
+    try {
+        ofstream outputFile(outputFileName, ios::out);
 
-    if (!outputFile) {
-        cerr << "Failed to open output file." << endl;
-        return;
-    }
+        if (!outputFile) {
+            throw runtime_error("Failed to open output file.");
+        }
 
-    int packetsPointersSize = packetsPointers.size();
-    for (int index = 0; index < packetsPointersSize; ++index) {
-        outputFile << "Packet # " << index << ": " << endl;
-        outputFile << *packetsPointers[index] << endl;
-        outputFile << "********************************************************************************************"
-                      "***************************************************************************************\n" << endl;
+        int packetsPointersSize = packetsPointers.size();
+        for (int index = 0; index < packetsPointersSize; ++index) {
+            outputFile << "Packet # " << index << ": " << endl;
+            outputFile << *packetsPointers[index] << endl;
+            outputFile << "********************************************************************************************"
+                          "***************************************************************************************\n" << endl;
+        }
+        outputFile.close();
+    } catch (exception& error) {
+        std::cerr << "Error: " << error.what() << std::endl;
     }
-    outputFile.close();
+}
+
+void PacketAnalyzer::checkPacketLength(string packetDataInput) {
+    if(packetDataInput.size() < PACKET_MIN_LENGTH || packetDataInput.size() > PACKET_MAX_LENGTH){
+        throw runtime_error("Insufficient packet data length");
+    }
 }
 
 PacketAnalyzer::~PacketAnalyzer() {

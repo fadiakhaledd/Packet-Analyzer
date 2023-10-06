@@ -14,10 +14,6 @@ const int TYPE_START = 40;
 const int TYPE_LENGTH = 4;
 
 EthernetPacket::EthernetPacket(const string& packetData) {
-
-    if (packetData.length() < PACKET_MIN_LENGTH) {
-        throw std::runtime_error("Invalid packetData: Insufficient length");
-    }
     this->packetData = packetData;
 
     processPacketData();
