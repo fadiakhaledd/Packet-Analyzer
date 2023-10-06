@@ -28,7 +28,7 @@ void PacketAnalyzer::readFromInputFile() {
 
     EthernetPacket *packetPointer;
     while (getline(inputFileStream, packetDataInput)) {
-        packetPointer = PacketFactory::getPackedBasedOnType(packetDataInput);
+        packetPointer = PacketFactory::getPacketBasedOnType(packetDataInput);
         packetsPointers.push_back(packetPointer);
     }
     inputFileStream.close();
