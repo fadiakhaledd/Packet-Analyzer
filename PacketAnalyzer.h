@@ -23,8 +23,6 @@ public:
     void setOutputFileName(const string &outputFileName);
     void readFromInputFile();
     void writeToOutputFile();
-
-
 };
 
 #endif
