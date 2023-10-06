@@ -42,8 +42,8 @@ string EthernetPacket::extractTypeFromData() const {
     return packetData.substr(TYPE_START, TYPE_LENGTH);
 }
 
-ostream &operator<<(ostream &outStream, EthernetPacket const &obj) {
-    return obj.stringifyPacketData(outStream);
+ostream &operator<<(ostream &outStream, EthernetPacket const &ethernetPacket) {
+    return ethernetPacket.stringifyPacketData(outStream);
 }
 
 ostream &EthernetPacket::stringifyPacketData(ostream &outStream) const {

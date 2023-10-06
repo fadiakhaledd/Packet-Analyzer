@@ -32,7 +32,7 @@ void PacketAnalyzer::readFromInputFile() {
         EthernetPacket *packetPointer;
         while (getline(inputFileStream, packetDataInput)) {
             checkPacketLength(packetDataInput);
-            packetPointer = PacketFactory::getPackedBasedOnType(packetDataInput);
+            packetPointer = PacketFactory::getPacketBasedOnType(packetDataInput);
             packetsPointers.push_back(packetPointer);
         }
         inputFileStream.close();
@@ -43,7 +43,6 @@ void PacketAnalyzer::readFromInputFile() {
     catch (exception& error) {
         cout << "Error: " << error.what() << endl;
     }
-
 }
 
 void PacketAnalyzer::writeToOutputFile() {

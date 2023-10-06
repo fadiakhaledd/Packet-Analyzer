@@ -5,7 +5,7 @@
 const int PACKET_TYPE_OFFSET = 40;
 const int PACKET_TYPE_LENGTH = 4;
 
-EthernetPacket *PacketFactory::getPackedBasedOnType(string const &packetData) {
+EthernetPacket *PacketFactory::getPacketBasedOnType(string const &packetData) {
     string packetType = packetData.substr(PACKET_TYPE_OFFSET, PACKET_TYPE_LENGTH);
 
     if (packetType == "AEFE") {

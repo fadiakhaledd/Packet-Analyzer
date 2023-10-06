@@ -70,4 +70,4 @@ Sample Output:
 7. The parsed packets will be saved to the specified output file.
    
 ##  UML Diagram
-![UML Diagram](uml_diagram.png)
+![UML Diagram](UML_Diagram.png)
