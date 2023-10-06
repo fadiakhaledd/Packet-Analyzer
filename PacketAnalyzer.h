@@ -15,15 +15,16 @@ protected:
     string inputFileName;
     string outputFileName;
     vector<EthernetPacket*> packetsPointers;
-public:
+    void checkPacketLength(const string& packetDataInput);
 
+public:
     PacketAnalyzer(const string&, const string&);
     ~PacketAnalyzer();
     void setInputFileName(const string &inputFileName);
     void setOutputFileName(const string &outputFileName);
     void readFromInputFile();
     void writeToOutputFile();
-    void checkPacketLength(string packetDataInput);
+
 };
 
 #endif

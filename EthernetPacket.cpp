@@ -15,7 +15,6 @@ const int TYPE_LENGTH = 4;
 
 EthernetPacket::EthernetPacket(const string& packetData) {
     this->packetData = packetData;
-
     processPacketData();
 }
 
