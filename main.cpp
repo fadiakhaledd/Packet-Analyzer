@@ -1,6 +1,3 @@
-#include <iostream>
-#include "EthernetPacket.h"
-#include "EcpriPacket.h"
 #include "PacketAnalyzer.h"
 
 using namespace std;
