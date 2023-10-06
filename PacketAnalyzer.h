@@ -23,6 +23,8 @@ public:
     void setOutputFileName(const string &outputFileName);
     void readFromInputFile();
     void writeToOutputFile();
+
+    void processPacketData(const string &packetFrame);
 };
 
 #endif

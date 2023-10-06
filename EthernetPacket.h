@@ -24,7 +24,7 @@ protected:
 public:
     EthernetPacket(const string& packetData);
     virtual ~EthernetPacket() = default;
-    friend ostream &operator<<(ostream &os, EthernetPacket const &obj);
+    friend ostream &operator<<(ostream &outStream, EthernetPacket const &ethernetPacket);
 
 };
 
